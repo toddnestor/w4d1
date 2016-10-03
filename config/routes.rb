@@ -10,9 +10,14 @@ Rails.application.routes.draw do
 
   resources :contacts do
     resources :comments, only: [:index]
+    post "favorite" => "contacts#favorite"
   end
 
   resources :comments, only: [:create, :destroy, :update]
 
   resources :contact_shares, only: [:create, :destroy]
+
+  resources :contact_shares do
+    post "favorite" => "contact_shares#favorite"
+  end
 end
