@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contact crap</title>
+    <script   src="http://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var api_url = 'http://localhost:3000'
+
+
+      var get_users = function() {
+        $.get(api_url + '/users').then(function(response){
+          return response
+        });
+      }
+
+      var create_user = function(username){
+        $.ajax({
+          url: api_url + '/users',
+          method: 'post',
+          data: {
+            user: {
+              username: username
+            }
+          },
+          success: function(response) {
+            console.log(response)
+          },
+          error: function(e) {
+            console.log('we gots an error!!!')
+          }
+        })
+      }
+
+      var get_contacts = function(user_id) {
+        $.ajax({
+          url: api_url + '/users/' + user_id + '/contacts',
+          method: 'get',
+          success: function(response) {
+            console.log(response)
+          },
+          error: function(e) {
+            console.log('we gots an error!!!')
+          }
+        })
+      }
+
+      var create_contact = function(name, email, user_id) {
+        $.ajax({
+          url: api_url + '/contacts',
+          method: 'post',
+          data: {
+            contact: {
+              name: name,
+              email: email,
+              user_id: user_id
+            }
+          },
+          success: function(response) {
+            console.log(response)
+          },
+          error: function(e) {
+            console.log('we gots an error!!!')
+          }
+        })
+      }
+
+      var destroy_contact = function(contact_id) {
+        $.ajax({
+          url: api_url + '/contacts/' + contact_id,
+          method: 'delete',
+          success: function(response) {
+            console.log(response)
+          },
+          error: function(e) {
+            console.log('we gots an error!!!!')
+          }
+        })
+      }
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

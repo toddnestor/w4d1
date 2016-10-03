@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :contacts, only: [:create, :destroy, :show, :update]
 
+  match '*all' => 'application#cor', via: :options
+
   resources :users do
     resources :contacts, only: [:index]
     resources :comments, only: [:index]
