@@ -7,7 +7,8 @@ class ContactSharesController < ApplicationController
   end
 
   def add_to_group
-    contact_group = ContactGroup.new(group_id: params[:group_id], contact_id: params[:contact_share_id])
+    contact_share = ContactShare.find(params[:contact_share_id])
+    contact_group = ContactGroup.new(group_id: params[:group_id], contact_id: contact_share.contact_id)
     contact_group.save
     render json: contact_group
   end
